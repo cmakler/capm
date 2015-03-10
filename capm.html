@@ -4,23 +4,51 @@
 </head>
 <body>
 <div ng-controller="Controller">
-    <p>Beta: {{ params.beta }}</p>
-    <input ng-model="params.beta" type="range" min="0.5" max="1.5" step="0.01">
     <table>
         <tr>
-            <td>Epsilon</td>
-            <td>X(t)</td>
-            <td>rf + beta*MRP - ( (beta^2)*(sigma^2) /2 )</td>
-            <td>beta * sigma * X(t)</td>
-            <td>Stock Value</td>
-            
+            <td>Beta</td>
+            <td><input ng-model="params.beta" type="range" min="-2" max="10" step="0.5"></td>
+            <td>{{params.beta | number:1}}</td>
         </tr>
-        <tr ng-repeat="d in data">
-            <td>{{d.e}}</td>
-            <td>{{d.sum}}</td>
-            <td>{{d.t_coeff}}</td>
-            <td>{{d.sqrt_t_coeff}}</td>
-            <td>{{d.s}}
+        <tr>
+            <td>Sigma</td>
+            <td><input ng-model="params.sigma" type="range" min="0.05" max="0.3" step="0.01"></td>
+            <td>{{params.sigma | number:2}}</td>
+        </tr>
+        <tr>
+            <td>Risk-Free Return (RF)</td>
+            <td><input ng-model="params.rf" type="range" min="0" max="0.10" step="0.01"></td>
+            <td>{{params.rf | number:2}}</td>
+        </tr>
+        <tr>
+            <td>MRP</td>
+            <td><input ng-model="params.MRP" type="range" min="0" max="0.12" step="0.01"></td>
+            <td>{{params.MRP | number:2}}</td>
+        </tr>
+        <tr>
+            <td>Years (T)</td>
+            <td><input ng-model="params.T" type="range" min="1" max="50" step="1"></td>
+            <td>{{params.T | number:0}}</td>
+        </tr>
+        <tr>
+            <td>Number of Stocks</td>
+            <td><input ng-model="params.numStocks" type="range" min="1" max="1000" step="1"></td>
+            <td>{{params.numStocks | number:0}}</td>
+        </tr>
+    </table>
+    <hr/>
+    <table>
+        <tr style="color:blue">
+            <td>Period</td>
+            <td ng-repeat="i in data[0]">{{ $index }}</td>
+        </tr>
+        <tr ng-repeat="stock in data">
+            <td>Stock {{ $index + 1 }}</td>
+            <td ng-repeat="value in stock">{{value | number:2}}</td>
+        </tr>
+        <tr>
+            <td>Median</td>
+            <td ng-repeat="value in median()">{{value | number:2}}</td>
         </tr>
     </table>
 </div>
