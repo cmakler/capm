@@ -1,0 +1,32 @@
+<html ng-app="MyApp">
+<head>
+<title>CAPM Model</title>
+</head>
+<body>
+<div ng-controller="Controller">
+    <p>{{ params.beta }}</p>
+    <input ng-model="params.beta" type="range" min="0" max="10">
+    <table>
+        <tr>
+            <td>Epsilon</td>
+            <td>X(t)</td>
+            <td>rf + beta*MRP - ( (beta^2)*(sigma^2) /2 )</td>
+            <td>beta * sigma * X(t)</td>
+            <td>Stock Value</td>
+            
+        </tr>
+        <tr ng-repeat="d in data">
+            <td>{{d.e}}</td>
+            <td>{{d.sum}}</td>
+            <td>{{d.t_coeff}}</td>
+            <td>{{d.sqrt_t_coeff}}</td>
+            <td>{{d.s}}
+        </tr>
+    </table>
+</div>
+<script src="jquery-1.11.0.min.js"></script>
+<script src="angular.js"></script>
+<script src="d3.min.js"></script>
+<script src="capm.js"></script>
+</body>
+</html>
