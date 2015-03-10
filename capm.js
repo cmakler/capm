@@ -9,15 +9,15 @@ app.controller('Controller', function ($scope) {
         sigma: 0.17,  // historic volatility of US market
         MRP: 0.06,
         S0: 1,
-        numStocks: 5
+        numDraws: 5
     }
 
-    // create a 121 x numStocks matrix of shocks
+    // create a 121 x numDraws matrix of shocks
     function updateShocks() {
         $scope.epsilon = [];
 
         // for each stock
-        for(var s=0; s<$scope.params.numStocks; s++) {
+        for(var s=0; s<$scope.params.numDraws; s++) {
 
             // initialize with shock of zero in period 0
             stock_shocks = [0];
@@ -58,7 +58,7 @@ app.controller('Controller', function ($scope) {
         };
         
         var data_matrix = []
-        for(var s=0; s<params.numStocks; s++) {
+        for(var s=0; s<params.numDraws; s++) {
             data_matrix.push(stockData(stockValueParams, shocks[s]));
         };
         return data_matrix;

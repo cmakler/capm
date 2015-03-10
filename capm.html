@@ -31,9 +31,9 @@
             <td>{{params.T | number:0}}</td>
         </tr>
         <tr>
-            <td>Number of Stocks</td>
-            <td><input ng-model="params.numStocks" type="range" min="1" max="1000" step="1"></td>
-            <td>{{params.numStocks | number:0}}</td>
+            <td>Number of Draws</td>
+            <td><input ng-model="params.numDraws" type="range" min="1" max="1000" step="1"></td>
+            <td>{{params.numDraws | number:0}}</td>
         </tr>
     </table>
     <hr/>
@@ -42,10 +42,10 @@
             <td>Period</td>
             <td ng-repeat="i in data[0]">{{ $index }}</td>
         </tr>
-        <tr ng-repeat="stock in data">
-            <td>Stock {{ $index + 1 }}</td>
+        <!--<tr ng-repeat="stock in data">
+            <td>Draw {{ $index + 1 }}</td>
             <td ng-repeat="value in stock">{{value | number:2}}</td>
-        </tr>
+        </tr>-->
         <tr>
             <td>Median</td>
             <td ng-repeat="value in median()">{{value | number:2}}</td>
