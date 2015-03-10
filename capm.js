@@ -19,7 +19,7 @@ app.controller('Controller', function ($scope) {
             s;
         for(var t=0; t<12*$scope.params.T; t++) {
             // Generate a normally distributed number by adding three U~[0,1] together
-            var e = (Math.random()*2-1)+(Math.random()*2-1)+(Math.random()*2-1)+(Math.random()*2-1)+(Math.random()*2-1)+(Math.random()*2-1),
+            var e = d3.random.normal(0,1)();
                 rf = $scope.params.rf,
                 betaMRP = $scope.params.beta * $scope.params.MRP;
             sum += e;
