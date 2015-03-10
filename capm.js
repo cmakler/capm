@@ -19,12 +19,12 @@ app.controller('Controller', function ($scope) {
             s;
         for(var t=0; t<12*$scope.params.T; t++) {
             // Generate a normally distributed number by adding three U~[0,1] together
-            var e = (Math.random()*2-1)+(Math.random()*2-1)+(Math.random()*2-1),
+            var e = (Math.random()*2-1)+(Math.random()*2-1)+(Math.random()*2-1)+(Math.random()*2-1)+(Math.random()*2-1)+(Math.random()*2-1),
                 rf = $scope.params.rf,
                 betaMRP = $scope.params.beta * $scope.params.MRP;
             sum += e;
             sqrt_t_coeff = $scope.params.beta * $scope.params.sigma * sum;
-            s = $scope.params.S0*Math.exp((t_coeff * t) + (sqrt_t_coeff * Math.pow(t,0.5)));
+            s = $scope.params.S0*Math.exp(t_coeff * (t+1) / 12 + (sqrt_t_coeff * Math.pow(12,-0.5)));
             data_array.push({e: e, sum: sum, s:s, t_coeff: t_coeff, sqrt_t_coeff: sqrt_t_coeff});
         }
         $scope.data = data_array;
