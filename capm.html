@@ -1,9 +1,13 @@
 <html ng-app="MyApp">
 <head>
 <title>CAPM Model</title>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+
 <div ng-controller="Controller">
+    <div id="graph"></div>
+    <div style="position:absolute;left:1000px; width:300px; top:50px; height: 400px;">
     <table>
         <tr>
             <td>Beta</td>
@@ -12,22 +16,22 @@
         </tr>
         <tr>
             <td>Sigma</td>
-            <td><input ng-model="params.sigma" type="range" min="0.05" max="0.3" step="0.01"></td>
+            <td><input ng-model="params.sigma" type="range" min="0.05" max="0.3" step="0.001"></td>
             <td>{{params.sigma | number:2}}</td>
         </tr>
         <tr>
             <td>Risk-Free Return (RF)</td>
-            <td><input ng-model="params.rf" type="range" min="0" max="0.10" step="0.01"></td>
+            <td><input ng-model="params.rf" type="range" min="0" max="0.10" step="0.001"></td>
             <td>{{params.rf | number:2}}</td>
         </tr>
         <tr>
             <td>MRP</td>
-            <td><input ng-model="params.MRP" type="range" min="0" max="0.12" step="0.01"></td>
+            <td><input ng-model="params.MRP" type="range" min="0.01" max="0.12" step="0.001"></td>
             <td>{{params.MRP | number:2}}</td>
         </tr>
         <tr>
             <td>Years (T)</td>
-            <td><input ng-model="params.T" type="range" min="1" max="50" step="1"></td>
+            <td><input ng-model="params.T" type="range" min="1" max="10" step="1"></td>
             <td>{{params.T | number:0}}</td>
         </tr>
         <tr>
@@ -36,25 +40,12 @@
             <td>{{params.numDraws | number:0}}</td>
         </tr>
     </table>
-    <hr/>
-    <table>
-        <tr style="color:blue">
-            <td>Period</td>
-            <td ng-repeat="i in data[0]">{{ $index }}</td>
-        </tr>
-        <!--<tr ng-repeat="stock in data">
-            <td>Draw {{ $index + 1 }}</td>
-            <td ng-repeat="value in stock">{{value | number:2}}</td>
-        </tr>-->
-        <tr>
-            <td>Median</td>
-            <td ng-repeat="value in median()">{{value | number:2}}</td>
-        </tr>
-    </table>
+    </div>
 </div>
 <script src="jquery-1.11.0.min.js"></script>
 <script src="angular.js"></script>
-<script src="d3.min.js"></script>
+<script src="http://d3js.org/d3.v3.js"></script>
+<script src="vis.js"></script>
 <script src="capm.js"></script>
 </body>
 </html>
