@@ -19,21 +19,28 @@ function addAxesAndLegend (svg, xAxis, yAxis, margin, chartWidth, chartHeight) {
     axes.append('g')
         .attr('class', 'x axis')
         .attr('transform', 'translate(0,' + chartHeight + ')')
-        .call(xAxis);
+        .call(xAxis)
+        .append('text')
+                .attr('x', chartWidth)
+                .attr('dy', '-0.2em')
+                .style('text-anchor', 'end')
+        .text('Year');
 
     axes.append('g')
         .attr('class', 'y axis')
         .call(yAxis)
         .append('text')
         .attr('transform', 'rotate(-90)')
-        .attr('y', 6)
-        .attr('dy', '.71em')
+        .attr('y', 10)
+        .attr('dy', '0.5em')
         .style('text-anchor', 'end')
         .text('Value');
 
+
+
     var legend = svg.append('g')
         .attr('class', 'legend')
-        .attr('transform', 'translate(' + (chartWidth - legendWidth) + ', 0)');
+        .attr('transform', 'translate(50, 10)');
 
     legend.append('rect')
         .attr('class', 'legend-bg')
@@ -161,36 +168,3 @@ function makeChart (data) {
     addAxesAndLegend(svg, xAxis, yAxis, margin, chartWidth, chartHeight);
     drawPaths(svg, data, x, y);
 }
-
-d3.json('data.json', function (error, rawData) {
-    if (error) {
-        console.error(error);
-        return;
-    }
-
-    var data = rawData.map(function (d) {
-        return {
-            date: d.date,
-            pct05: d.pct05 / 1000,
-            pct25: d.pct25 / 1000,
-            pct50: d.pct50 / 1000,
-            pct75: d.pct75 / 1000,
-            pct95: d.pct95 / 1000
-        };
-    });
-
-    var data2 = rawData.map(function (d) {
-        return {
-            date: d.date,
-            pct05: d.pct05 / 2000,
-            pct25: d.pct25 / 2500,
-            pct50: d.pct50 / 1000,
-            pct75: d.pct75 / 500,
-            pct95: d.pct95 / 200
-        };
-    });
-
-    makeChart(data);
-    setTimeout(makeChart(data2),2000);
-
-});

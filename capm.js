@@ -96,7 +96,7 @@ app.controller('Controller', function ($scope) {
         for(var t=0; t<=12*$scope.params.T; t++) {
             vt = valuesInPeriod(data_matrix,t).sort(d3.ascending);
             data_array[t] = {
-                date: t,
+                date: t/12,
                 pct05: d3.quantile(vt,0.05),
                 pct25: d3.quantile(vt,0.25),
                 pct50: d3.quantile(vt,0.50),
