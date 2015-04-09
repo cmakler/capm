@@ -9,7 +9,8 @@ app.controller('Controller', function ($scope) {
         sigma: 0.17,  // historic volatility of US market
         MRP: 0.06,
         S0: 1,
-        numDraws: 10
+        numDraws: 10,
+        showDraws: false
     };
 
     function debounce(fn,time) {
@@ -90,7 +91,7 @@ app.controller('Controller', function ($scope) {
         return data_matrix.map(function(stock_values){return stock_values[t]});
     }
 
-    $scope.plotdata = function(data_matrix) {
+    $scope.plotdata = function(data_matrix, showDraws) {
         var data_array = [],
             vt = [];
         for(var t=0; t<=12*$scope.params.T; t++) {
@@ -103,6 +104,7 @@ app.controller('Controller', function ($scope) {
                 pct75: d3.quantile(vt,0.75),
                 pct95: d3.quantile(vt,0.95)
             };
+            if(showDraws) {data_array[t].allValues = valuesInPeriod(data_matrix,t)}
         }
         return data_array;
     };
@@ -115,8 +117,8 @@ app.controller('Controller', function ($scope) {
         $scope.params.MRP = parseFloat($scope.params.MRP);
         var d = new Date().getTime();
         $scope.data = generateData($scope.params, $scope.epsilon);
-        console.log("generateData time ", (new Date().getTime() - d)/1000, "s")
-        makeChart($scope.plotdata($scope.data));
+        console.log("generateData time ", (new Date().getTime() - d)/1000, "s");
+        makeChart($scope.plotdata($scope.data, $scope.params.showDraws));
 
     }
     //$scope.data = generateData($scope.params, $scope.epsilon);

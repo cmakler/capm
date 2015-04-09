@@ -113,6 +113,17 @@ function drawPaths (svg, data, x, y) {
 
     svg.datum(data);
 
+    if(data[0].hasOwnProperty('allValues')) {
+        for(var i=0;i<data[0].allValues.length;i++) {
+            svg.append('path')
+                .attr('class','draw-line')
+                .attr('d', d3.svg.line()
+                    .interpolate('basis')
+                    .x(function(d) {return x(d.date)})
+                    .y(function(d) {return y(d.allValues[i])}))
+        }
+    }
+
     svg.append('path')
         .attr('class', 'area upper outer')
         .attr('d', upperOuterArea);
@@ -132,6 +143,8 @@ function drawPaths (svg, data, x, y) {
     svg.append('path')
         .attr('class', 'median-line')
         .attr('d', medianLine);
+
+
 }
 
 function startTransitions (svg, chartWidth, chartHeight, rectClip, x) {

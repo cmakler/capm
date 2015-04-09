@@ -42,6 +42,13 @@ svg {
     stroke-width: 3;
 }
 
+.draw-line {
+    fill: none;
+    stroke: #999;
+    stroke-width: 0.5;
+    alpha: 0.8;
+}
+
 .legend .legend-bg {
     fill: rgba(0, 0, 0, 0.5);
     stroke: rgba(0, 0, 0, 0.5);
