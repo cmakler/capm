@@ -122,6 +122,11 @@ app.controller('Controller', function ($scope) {
     //$scope.data = generateData($scope.params, $scope.epsilon);
     $scope.$watchCollection('params', debounce(update,100));
 
+    $scope.updateShocks = function() {
+        updateShocks();
+        update();
+    };
+
     update();
     
 });
