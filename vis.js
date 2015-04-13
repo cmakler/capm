@@ -99,6 +99,11 @@ function drawPaths (svg, data, x, y) {
         .x(function (d) { return x(d.date); })
         .y(function (d) { return y(d.pct50); });
 
+    var meanLine = d3.svg.line()
+        .interpolate('basis')
+        .x(function (d) { return x(d.date); })
+        .y(function (d) { return y(d.mean); });
+
     var lowerInnerArea = d3.svg.area()
         .interpolate('basis')
         .x (function (d) { return x(d.date) || 1; })
@@ -143,6 +148,10 @@ function drawPaths (svg, data, x, y) {
     svg.append('path')
         .attr('class', 'median-line')
         .attr('d', medianLine);
+
+    svg.append('path')
+        .attr('class', 'mean-line')
+        .attr('d', meanLine);
 
 
 }

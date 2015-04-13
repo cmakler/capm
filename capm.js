@@ -102,7 +102,8 @@ app.controller('Controller', function ($scope) {
                 pct25: d3.quantile(vt,0.25),
                 pct50: d3.quantile(vt,0.50),
                 pct75: d3.quantile(vt,0.75),
-                pct95: d3.quantile(vt,0.95)
+                pct95: d3.quantile(vt,0.95),
+                mean: d3.mean(vt)
             };
             if(showDraws) {data_array[t].allValues = valuesInPeriod(data_matrix,t)}
         }

@@ -42,6 +42,13 @@ svg {
     stroke-width: 3;
 }
 
+.mean-line,
+.legend .mean-line {
+    fill: none;
+    stroke: #600;
+    stroke-width: 3;
+}
+
 .draw-line {
     fill: none;
     stroke: #999;
