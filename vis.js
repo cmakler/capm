@@ -104,6 +104,11 @@ function drawPaths (svg, data, x, y) {
         .x(function (d) { return x(d.date); })
         .y(function (d) { return y(d.mean); });
 
+    var riskFreeLine = d3.svg.line()
+        .interpolate('basis')
+        .x(function (d) { return x(d.date); })
+        .y(function (d) { return y(d.riskFree); });
+
     var lowerInnerArea = d3.svg.area()
         .interpolate('basis')
         .x (function (d) { return x(d.date) || 1; })
@@ -153,7 +158,9 @@ function drawPaths (svg, data, x, y) {
         .attr('class', 'mean-line')
         .attr('d', meanLine);
 
-
+    svg.append('path')
+        .attr('class', 'risk-free-line')
+        .attr('d', riskFreeLine);
 }
 
 function startTransitions (svg, chartWidth, chartHeight, rectClip, x) {
@@ -172,8 +179,7 @@ function makeChart (data) {
     var x = d3.scale.linear().range([0, chartWidth])
             .domain([0, d3.max(data, function (d) { return d.date; })]),
         y = d3.scale.linear().range([chartHeight, 0])
-            .domain([0,5]);
-            //.domain([0, d3.max(data, function (d) { return d.pct95; })]);
+            .domain([0, d3.max(data, function (d) { return d.pct75; })]);
 
     var xAxis = d3.svg.axis().scale(x).orient('bottom')
             .innerTickSize(-chartHeight).outerTickSize(0).tickPadding(10),

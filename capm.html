@@ -16,18 +16,18 @@
         </tr>
         <tr>
             <td>Sigma</td>
-            <td><input ng-model="params.sigma" type="range" min="0.05" max="0.3" step="0.001"></td>
+            <td><input ng-model="params.sigma" type="range" min="0.05" max="0.3" step="0.01"></td>
             <td>{{params.sigma | number:2}}</td>
         </tr>
         <tr>
             <td>Risk-Free Return (RF)</td>
-            <td><input ng-model="params.rf" type="range" min="0" max="0.10" step="0.001"></td>
+            <td><input ng-model="params.rf" type="range" min="0" max="0.10" step="0.01"></td>
             <td>{{params.rf | number:2}}</td>
         </tr>
         <tr>
             <td>MRP</td>
             <td><input ng-model="params.MRP" type="range" min="0.01" max="0.12" step="0.001"></td>
-            <td>{{params.MRP | number:2}}</td>
+            <td>{{params.MRP | number:3}}</td>
         </tr>
         <tr>
             <td>Years (T)</td>

@@ -87,6 +87,11 @@ app.controller('Controller', function ($scope) {
         return data_matrix;
     }
 
+    function riskFreeInPeriod(t) {
+        var rfcc = Math.log(1+$scope.params.rf);
+        return $scope.params.S0*Math.exp(rfcc*t/12)
+    }
+
     function valuesInPeriod(data_matrix,t) {
         return data_matrix.map(function(stock_values){return stock_values[t]});
     }
@@ -103,7 +108,8 @@ app.controller('Controller', function ($scope) {
                 pct50: d3.quantile(vt,0.50),
                 pct75: d3.quantile(vt,0.75),
                 pct95: d3.quantile(vt,0.95),
-                mean: d3.mean(vt)
+                mean: d3.mean(vt),
+                riskFree: riskFreeInPeriod(t)
             };
             if(showDraws) {data_array[t].allValues = valuesInPeriod(data_matrix,t)}
         }

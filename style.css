@@ -49,6 +49,14 @@ svg {
     stroke-width: 3;
 }
 
+.risk-free-line,
+.legend .risk-free-line {
+    fill: none;
+    stroke: #060;
+    stroke-width: 1;
+}
+
+
 .draw-line {
     fill: none;
     stroke: #999;
